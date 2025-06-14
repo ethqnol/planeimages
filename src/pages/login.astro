@@ -1,11 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getSession } from 'auth-astro/server';
+import type User from '../lib/user';
+
 const session = await getSession(Astro.request);
 
 if(session) {
   return Astro.redirect("/profile")
-}
+} 
 ---
 
 <Layout title="Plane Images - Login">
@@ -26,7 +28,12 @@ if(session) {
   <script>
     const auth_module = await import("auth-astro/client");
     const {signIn} = auth_module;
-    (document.querySelector("#login")! as HTMLElement).onclick = () => signIn("github");
+    let login_button = (document.querySelector("#login")! as HTMLButtonElement)
+    
+    login_button.addEventListener("click", async () => {
+      await signIn("github");
+      await fetch("api/auth/login")
+    });
   </script>
 </Layout>
 

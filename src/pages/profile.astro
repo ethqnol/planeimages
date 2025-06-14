@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { getSession } from 'auth-astro/server';
+const session = await getSession(Astro.request);
+
+if(!session) {
+  return Astro.redirect("/login")
+}
+---
+<Layout>
+    <button id="logout" class="login-button logout-button">Logout</button>
+</Layout>
+
+<script>
+  const auth_module = await import("auth-astro/client");
+  const {signOut} = auth_module;
+  (document.querySelector("#logout")! as HTMLElement).onclick = () => {console.log("Buttonclick"); signOut()};
+</script>
+
+<style>
+:root {
+  --primary-color: #007bff; 
+  --secondary-color: #6c757d; 
+  --github-color: #333; 
+  --background-light: #f8f9fa; 
+  --text-dark: #343a40; 
+  --border-light: #dee2e6; 
+  --shadow-light: rgba(0, 0, 0, 0.1); 
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none; 
+}
+
+.login-button:hover {
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.logout-button:hover {
+  background-color: #5a6268;
+}
+
+body {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; 
+  background-color: var(--background-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; 
+  margin: 0;
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+</style>

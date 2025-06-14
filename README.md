@@ -1,5 +1,3 @@
-# We Hate JetPhotos
-JetPhotos is run by elitist photographers who have no souls, skills, or friends. The goal of this project is to have a place where people can freely publish and share their plane photos without constantly getting denied by JetPhotos' absurd application process. Photography is an art and the spread of said art should not be gatekept.
 
 ## 🚀 Project Structure
 

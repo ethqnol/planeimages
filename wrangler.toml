@@ -9,3 +9,8 @@ directory = "./dist"
 
 [observability]
 enabled = true
+
+[[d1_databases]]
+binding = "USER_DB"
+database_name = "user_data"
+database_id = "8c1bace1-b182-43d6-8c18-08f50184f12b"

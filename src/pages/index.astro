@@ -1,8 +1,230 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import b787 from '../assets/787.png'
+import engine from '../assets/engine.png'
+import turboprop from '../assets/turboprop.png'
+import Layout from '../layouts/Layout.astro'
 ---
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+
 
 <Layout>
-	<Welcome />
+<main>
+  <section class="hero">
+    <div class="hero-image-container">
+        <Image src={b787} alt="A modern passenger airplane flying through beautiful clouds during sunset" class="hero-bg-img" />
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">Aviation Photos, From Any Lens</h1>
+        <p class="hero-subtitle">Share and view airplane photography without the elitist gatekeeping of JetPhotos. All images welcome.</p>
+        <a href="/images" class="cta-button">Explore Plane Images</a>
+    </div>
+  </section>
+
+  <section class="gallery-container">
+    <h2 class="section-title">Featured Images</h2>
+    <div class="gallery">
+      <div class="gallery-card">
+          <Image src={turboprop} alt="A vintage propeller plane on an airfield runway at sunrise" class="gallery-img"/>
+        <div class="card-content">
+          <h3 class="card-title">Turboprop On a Runway</h3>
+          <p class="card-description">A propeller plane awaits takeoff clearance on a misty runway.</p>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <Image src={engine} alt="A close-up photograph of a detailed jet engine" class="gallery-img"/>
+        <div class="card-content">
+          <h3 class="card-title">Fantastic Engines</h3>
+          <p class="card-description">An intricate and powerful engine.</p>
+        </div>
+      </div>
+      <div class="gallery-card">
+        <div class="placeholder-card">
+           <h3 class="card-title">Want to add your photos here?</h3>
+           <p class="card-description">Sign up to share your own aviation photos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 </Layout>
+
+
+<style>
+    :root {
+        --primary-color: #3b82f6; 
+        --primary-hover: #2563eb;
+        --text-dark: #1f2937; 
+        --text-light: #f9fafb;
+        --background-light: #f9fafb;
+        --background-dark: #111827;
+        --border-color: #e5e7eb;
+        --font-sans: 'Inter', sans-serif;
+        --font-serif: 'Playfair Display', serif;
+    }
+    
+    :global(body) {
+        font-family: var(--font-sans);
+        background-color: var(--background-light);
+        color: var(--text-dark);
+        margin: 0;
+    }
+    .hero {
+        position: relative;
+        height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        overflow: hidden;
+    }
+
+    .hero-image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .hero-bg-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: scale(1.05);
+        animation: zoom-out 20s ease-out forwards;
+    }
+  
+    @keyframes zoom-out {
+        from { transform: scale(1.15); }
+        to { transform: scale(1.0); }
+    }
+
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+        color: var(--text-light);
+        padding: 0 2rem;
+    }
+
+    .hero-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        text-shadow: 0px 4px 15px rgba(0,0,0,0.5);
+    }
+
+    .hero-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        max-width: 650px;
+        margin: 0 auto 2.5rem;
+        text-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text-light);
+        background-color: var(--primary-color);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+
+    .cta-button:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-3px);
+    }
+
+    .gallery-container {
+        padding: 6rem 2rem;
+    }
+
+    .section-title {
+        font-family: var(--font-serif);
+        font-size: 2.75rem;
+        text-align: center;
+        margin-bottom: 3rem;
+        color: var(--text-dark);
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .gallery-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+  
+    .placeholder-card {
+        width: 100%;
+        height: 240px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--border-color);
+        text-align: center;
+        padding: 1rem;
+        height: 100%;
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-title {
+        font-family: var(--font-serif);
+        font-size: 1.5rem;
+        margin: 0 0 0.5rem 0;
+        color: var(--text-dark);
+    }
+
+    .card-description {
+        font-size: 1rem;
+        color: #6b7280;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+
+</style>
+

@@ -1,0 +1,104 @@
+<header id="main-header">
+  <div class="header-container">
+      <a  href="/" class="site-title nav-container">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M21.4356 12.0001L19.2231 14.1251L19.2229 17.5136L16.299 20.4375L12.9115 20.4376L10.7001 22.5626L9.63853 21.5011L11.7635 19.3761L8.83963 16.4522L5.45215 16.4524L3.32715 14.241L1.20215 15.3025L2.26365 16.364L2.375 16.2526L4.56251 18.4399L8.47101 18.4398L10.6815 16.2293L13.1428 18.6906L14.2043 17.6291L12.141 15.5658L15.0649 12.6419L18.4524 12.6421L20.6629 10.4316L22.4986 12.2673L21.4356 12.0001Z" fill="currentColor"/>
+        <path d="M12.9115 3.5625L10.7001 1.4375L9.63853 2.49899L11.7635 4.62399L8.83963 7.54788L5.45215 7.54777L3.32715 9.7592L1.20215 8.69771L2.26365 7.63621L2.375 7.74762L4.56251 5.56023L8.47101 5.56034L10.6815 7.77084L13.1428 5.30953L14.2043 6.37103L12.141 8.43434L15.0649 11.3582L18.4524 11.3583L20.6629 13.5688L22.4986 11.7331L21.4356 12.0002L19.2231 9.87523L19.2229 6.48671L16.299 3.56281L12.9115 3.5625Z" fill="currentColor"/>
+      </svg>
+      Plane Images
+    </a>
+    <div class="nav-container">
+        <a href="/login" class="nav-button">Login / Signup </a>
+    </div>
+  </div>
+</header>
+
+
+<style>
+  
+  #main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: background-color 0.4s ease-out, box-shadow 0.4s ease-out;
+  }
+  
+  .nav-container {
+    padding: 0.5rem 2rem
+  }
+  
+  #main-header.scrolled {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    padding: 0.7rem 0;
+  }
+
+  .site-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  #main-header.scrolled .site-title {
+    color: var(--text-dark);
+  }
+
+  .nav-button {
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.6rem 1.25rem;
+    border: 2px solid var(--text-light);
+    color: var(--text-light);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  #main-header.scrolled .nav-button {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+
+  .nav-button.profile,
+  .nav-button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+  }
+  
+  #main-header.scrolled .nav-button:hover {
+      background-color: var(--primary-hover);
+      border-color: var(--primary-hover);
+  }
+</style>
+
+<script>
+  const header = document.getElementById('main-header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  }
+</script>
